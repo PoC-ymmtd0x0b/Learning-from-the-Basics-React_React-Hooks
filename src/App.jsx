@@ -1,7 +1,8 @@
 import React from "react";
+import NameInput from "./components/NameInput.jsx";
 
 function App() {
-  return <div>Hello React!!</div>;
+  return <NameInput />;
 }
 
 export default App;
