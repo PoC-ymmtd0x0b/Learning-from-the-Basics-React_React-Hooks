@@ -1,7 +1,8 @@
 import React from "react";
+import Input from "./components/Input.jsx";
 
 function App() {
-  return <div>Hello React!!</div>;
+  return <Input />;
 }
 
 export default App;
