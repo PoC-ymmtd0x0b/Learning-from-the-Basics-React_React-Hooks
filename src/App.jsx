@@ -1,7 +1,8 @@
 import React from "react";
+import RadioButton from "./components/RadioButton";
 
 function App() {
-  return <div>Hello React!!</div>;
+  return <RadioButton />;
 }
 
 export default App;
