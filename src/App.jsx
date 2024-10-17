@@ -1,7 +1,8 @@
 import React from "react";
+import LikeButton from "./components/LikeButton.jsx";
 
 function App() {
-  return <div>Hello React!!</div>;
+  return <LikeButton />;
 }
 
 export default App;
