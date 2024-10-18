@@ -13,8 +13,8 @@ const CheckBtnItems = ({ onChange, checked }) =>
         <input
           type="checkbox"
           value={value.item}
-          onChange={(e) => onChange(e.target.value)}
-          checked={checked.includes(value.item)}
+          onChange={(e) => onChange(e.target.value, e.target.checked)}
+          checked={checked[value.item]}
         />
         {value.item}
       </label>
@@ -22,21 +22,28 @@ const CheckBtnItems = ({ onChange, checked }) =>
   });
 
 export default function CheckBoxs() {
-  const [checkedValues, setCheckedValues] = useState([]);
+  const [checkedValues, setCheckedValues] = useState(
+    values.reduce((acc, cur) => {
+      acc[cur.item] = false;
+      return acc;
+    }, {}),
+  );
 
-  const handleChange = (checkValue) => {
-    if (checkedValues.includes(checkValue)) {
-      setCheckedValues(
-        checkedValues.filter((checkedValue) => checkedValue !== checkValue),
-      );
-    } else {
-      setCheckedValues([...checkedValues, checkValue]);
-    }
+  const handleChange = (checkValue, checkedState) => {
+    setCheckedValues({ ...checkedValues, [checkValue]: checkedState });
   };
+
+  const stateOfCheckValues = Object.entries(checkedValues).reduce(
+    (pre, [key, value]) => {
+      value && pre.push(key);
+      return pre;
+    },
+    [],
+  );
 
   return (
     <>
-      <p>現在選択されている値：{checkedValues.join("、")}</p>
+      <p>現在選択されている値：{stateOfCheckValues.join("、")}</p>
       <CheckBtnItems onChange={handleChange} checked={checkedValues} />
     </>
   );
