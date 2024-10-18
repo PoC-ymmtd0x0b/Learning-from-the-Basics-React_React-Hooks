@@ -1,5 +1,26 @@
 import React, { useState } from "react";
 
+const values = [
+  { id: 1, item: "マウス" },
+  { id: 2, item: "モニター" },
+  { id: 3, item: "キーボード" },
+];
+
+const CheckBtnItems = ({ onChange, checked }) =>
+  values.map((value) => {
+    return (
+      <label key={value.id}>
+        <input
+          type="checkbox"
+          value={value.item}
+          onChange={(e) => onChange(e.target.value)}
+          checked={checked.includes(value.item)}
+        />
+        {value.item}
+      </label>
+    );
+  });
+
 export default function CheckBoxs() {
   const [checkedValues, setCheckedValues] = useState([]);
 
@@ -16,33 +37,7 @@ export default function CheckBoxs() {
   return (
     <>
       <p>現在選択されている値：{checkedValues.join("、")}</p>
-      <label>
-        <input
-          type="checkbox"
-          value="マウス"
-          onChange={(e) => handleChange(e.target.value)}
-          checked={checkedValues.includes("マウス")}
-        />
-        マウス
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="モニター"
-          onChange={(e) => handleChange(e.target.value)}
-          checked={checkedValues.includes("モニター")}
-        />
-        モニター
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="キーボード"
-          onChange={(e) => handleChange(e.target.value)}
-          checked={checkedValues.includes("キーボード")}
-        />
-        キーボード
-      </label>
+      <CheckBtnItems onChange={handleChange} checked={checkedValues} />
     </>
   );
 }
