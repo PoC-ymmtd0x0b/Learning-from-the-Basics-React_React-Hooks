@@ -1,7 +1,8 @@
 import React from "react";
+import CheckBoxs from "./components/CheckBoxs";
 
 function App() {
-  return <div>Hello React!!</div>;
+  return <CheckBoxs />;
 }
 
 export default App;
