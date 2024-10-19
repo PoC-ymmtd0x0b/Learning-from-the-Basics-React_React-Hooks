@@ -1,12 +1,12 @@
 import React from "react";
-import { TextProvider } from "./TextProvider.jsx";
+import { CountProvider } from "./CountProvider.jsx";
 import { First } from "./First.jsx";
 
 function App() {
   return (
-    <TextProvider>
+    <CountProvider>
       <First />
-    </TextProvider>
+    </CountProvider>
   );
 }
 
