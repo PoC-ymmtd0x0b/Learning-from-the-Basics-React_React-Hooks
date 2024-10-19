@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const SampleComponent = () => {
-  const [inputValue, setInputValue] = useState("");
+  const inputRefObj = useRef(null);
   const [text, setText] = useState("");
 
   useEffect(() => {
@@ -9,22 +9,17 @@ const SampleComponent = () => {
   });
 
   const handleClick = () => {
-    setText(inputValue);
-    setInputValue("");
+    setText(inputRefObj.current.value);
+    inputRefObj.current.value = "";
   };
-  const handleChange = (value) => setInputValue(value);
   const textReset = () => {
-    setInputValue("");
+    inputRefObj.current.value = "";
     setText("");
   };
 
   return (
     <div>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => handleChange(e.target.value)}
-      />
+      <input type="text" ref={inputRefObj} />
       <button onClick={handleClick}>set Text</button>
       <button onClick={textReset}>Reset</button>
 
