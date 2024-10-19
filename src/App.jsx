@@ -1,16 +1,34 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 const SampleComponent = () => {
-  const inputRefObj = useRef(null);
+  const [inputValue, setInputValue] = useState("");
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    console.log("レンダリング！");
+  });
 
   const handleClick = () => {
-    inputRefObj.current.focus();
+    setText(inputValue);
+    setInputValue("");
+  };
+  const handleChange = (value) => setInputValue(value);
+  const textReset = () => {
+    setInputValue("");
+    setText("");
   };
 
   return (
     <div>
-      <input type="text" ref={inputRefObj} />
-      <button onClick={handleClick}>入力エリアをフォーカス</button>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => handleChange(e.target.value)}
+      />
+      <button onClick={handleClick}>set Text</button>
+      <button onClick={textReset}>Reset</button>
+
+      <p>text: {text}</p>
     </div>
   );
 };
